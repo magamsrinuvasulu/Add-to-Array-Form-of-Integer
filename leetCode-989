@@ -1,0 +1,28 @@
+class Solution {
+    public List<Integer> addToArrayForm(int[] num, int k) {
+      List<Integer> list=new ArrayList<>();
+      int index=num.length-1;
+      int carry=0;
+      while(index>=0||k>0){
+        int extra=index<0?0:num[index];
+        int r=k%10;
+        int sum=extra+carry+r;
+        int firstDigit=sum%10;
+        list.add(firstDigit);
+        carry=sum>9?1:0;
+        index--;
+        k=k/10;
+      }
+      if(carry==1){
+        list.add(carry);
+      }
+      Collections.reverse(list);
+      return list;
+    }
+    public static void main(String[] args){
+        Solution obj=new Solution();
+        int[] num={1,2,0,0};
+        int k=56;
+        System.out.println(obj.addToArrayForm(num,k));
+    }
+}
